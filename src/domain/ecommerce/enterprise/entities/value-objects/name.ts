@@ -1,31 +1,29 @@
-import { Either, left, right } from "@/core/either.ts"
-import { ValueObject } from "@/core/entities/value-object.ts"
-import { InvalidNameError } from "@/core/errors/domain/invalid-name-error.ts"
+import { type Either, left, right } from '@/core/either.ts'
+import { ValueObject } from '@/core/entities/value-object.ts'
+import { InvalidNameError } from '@/core/errors/domain/invalid-name-error.ts'
 
 interface NameProps {
-  name: string
+	name: string
 }
 
 export class Name extends ValueObject<NameProps> {
-  get value(): string {
-    return this.props.name
-  }
+	get value(): string {
+		return this.props.name
+	}
 
-  public static validate(name: string): boolean {
-    if (!name || 
-      name.trim().length > 255
-    ) {
-      return false
-    }
+	public static validate(name: string): boolean {
+		if (!name || name.trim().length > 255) {
+			return false
+		}
 
-    return true
-  }
+		return true
+	}
 
-  static create(name: string): Either<InvalidNameError, Name> {
-    if (!this.validate(name)) {
-      return left(new InvalidNameError())
-    }
+	static create(name: string): Either<InvalidNameError, Name> {
+		if (!Name.validate(name)) {
+			return left(new InvalidNameError())
+		}
 
-    return right(new Name({ name }))
-  }
+		return right(new Name({ name }))
+	}
 }
