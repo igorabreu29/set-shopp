@@ -2,8 +2,8 @@ import { Entity } from '@/core/entities/entity.ts'
 import type { UniqueEntityId } from '@/core/entities/unique-entity-id.ts'
 
 export interface OrderItemProps {
-	orderId: string
-	productId: string
+	orderId: UniqueEntityId
+	productId: UniqueEntityId
 	quantity: number
 	price: number
 }
@@ -20,9 +20,15 @@ export class OrderItem extends Entity<OrderItemProps> {
 	get quantity() {
 		return this.props.quantity
 	}
+	set quantity(quantity) {
+		this.props.quantity = quantity
+	}
 
 	get price() {
 		return this.props.price
+	}
+	set price(price) {
+		this.props.price = price
 	}
 
 	static create(props: OrderItemProps, id?: UniqueEntityId) {

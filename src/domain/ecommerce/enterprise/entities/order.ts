@@ -2,20 +2,23 @@ import { Entity } from '@/core/entities/entity.ts'
 import type { UniqueEntityId } from '@/core/entities/unique-entity-id.ts'
 import type { Optional } from '@/core/types/optional.ts'
 
-export interface OrdersProps {
+export interface OrderProps {
 	customerId: UniqueEntityId
 	totalPrice: number
 	createdAt: Date
 	updatedAt: Date
 }
 
-export class Orders extends Entity<OrdersProps> {
+export class Order extends Entity<OrderProps> {
 	get customerId() {
 		return this.props.customerId
 	}
 
 	get totalPrice() {
 		return this.props.totalPrice
+	}
+	set totalPrice(totalPrice) {
+		this.props.totalPrice = totalPrice
 	}
 
 	get createdAt() {
@@ -26,8 +29,8 @@ export class Orders extends Entity<OrdersProps> {
 		return this.props.updatedAt
 	}
 
-	static create(props: Optional<OrdersProps, 'createdAt' | 'updatedAt'>, id?: UniqueEntityId) {
-		const orders = new Orders(
+	static create(props: Optional<OrderProps, 'createdAt' | 'updatedAt'>, id?: UniqueEntityId) {
+		const order = new Order(
 			{
 				...props,
 				createdAt: props.createdAt ?? new Date(),
@@ -36,6 +39,6 @@ export class Orders extends Entity<OrdersProps> {
 			id
 		)
 
-		return orders
+		return order
 	}
 }

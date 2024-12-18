@@ -3,6 +3,9 @@ import type { UniqueEntityId } from '@/core/entities/unique-entity-id.ts'
 import type { Optional } from '@/core/types/optional.ts'
 import type { Email } from './value-objects/email.ts'
 import type { Name } from './value-objects/name.ts'
+import { right, type Either } from '@/core/either.ts'
+import type { InvalidNameError } from '@/core/errors/domain/invalid-name-error.ts'
+import type { InvalidEmailError } from '@/core/errors/domain/invalid-email-error.ts'
 
 interface CustomerProps {
 	name: Name
@@ -24,7 +27,10 @@ export class Customer extends Entity<CustomerProps> {
 		return this.props.customerUrl
 	}
 
-	static create(props: Optional<CustomerProps, 'createdAt'>, id?: UniqueEntityId) {
+	static create(
+		props: Optional<CustomerProps, 'createdAt'>,
+		id?: UniqueEntityId
+	): Either<InvalidNameError | InvalidEmailError, Customer> {
 		const customer = new Customer(
 			{
 				...props,
@@ -32,6 +38,6 @@ export class Customer extends Entity<CustomerProps> {
 			},
 			id
 		)
-		return customer
+		return right(customer)
 	}
 }
