@@ -27,6 +27,7 @@ export class FetchAndCreateProductsUseCase {
 					description: item.description,
 					price: item.price,
 					productUrl: item.imageUrl,
+					priceId: item.priceId,
 				},
 				new UniqueEntityId(item.id)
 			)

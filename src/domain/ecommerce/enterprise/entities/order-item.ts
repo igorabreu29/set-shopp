@@ -6,6 +6,7 @@ export interface OrderItemProps {
 	productId: UniqueEntityId
 	quantity: number
 	price: number
+	priceId: string
 }
 
 export class OrderItem extends Entity<OrderItemProps> {
@@ -29,6 +30,10 @@ export class OrderItem extends Entity<OrderItemProps> {
 	}
 	set price(price) {
 		this.props.price = price
+	}
+
+	get priceId() {
+		return this.props.priceId
 	}
 
 	static create(props: OrderItemProps, id?: UniqueEntityId) {

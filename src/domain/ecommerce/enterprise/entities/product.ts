@@ -8,6 +8,7 @@ interface ProductProps {
 	name: Name
 	description: string
 	price: number
+	priceId: string
 	productUrl?: string
 }
 
@@ -31,6 +32,10 @@ export class Product extends Entity<ProductProps> {
 	}
 	set price(price) {
 		this.props.price = price
+	}
+
+	get priceId() {
+		return this.props.priceId
 	}
 
 	get productUrl() {

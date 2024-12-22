@@ -7,6 +7,7 @@ export interface OrderProps {
 	totalPrice: number
 	createdAt: Date
 	updatedAt: Date
+	hasFinished: boolean
 }
 
 export class Order extends Entity<OrderProps> {
@@ -29,12 +30,23 @@ export class Order extends Entity<OrderProps> {
 		return this.props.updatedAt
 	}
 
-	static create(props: Optional<OrderProps, 'createdAt' | 'updatedAt'>, id?: UniqueEntityId) {
+	get hasFinished() {
+		return this.props.hasFinished
+	}
+	set hasFinished(value) {
+		this.props.hasFinished = value
+	}
+
+	static create(
+		props: Optional<OrderProps, 'createdAt' | 'updatedAt' | 'hasFinished'>,
+		id?: UniqueEntityId
+	) {
 		const order = new Order(
 			{
 				...props,
 				createdAt: props.createdAt ?? new Date(),
 				updatedAt: props.updatedAt ?? new Date(),
+				hasFinished: props.hasFinished ?? false,
 			},
 			id
 		)
