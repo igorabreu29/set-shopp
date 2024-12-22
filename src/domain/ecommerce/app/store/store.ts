@@ -5,11 +5,20 @@ export interface StoreProduct {
 	name: string
 	description: string
 	price: number
+	priceId: string
 	imageUrl?: string
+}
+
+export interface Checkout {
+	priceId: string
+	quantity: number
 }
 
 export interface StoreProducts {
 	getById(id: string): Promise<StoreProduct | null>
 	fetch(): Promise<StoreProduct[]>
-	create(product: Optional<StoreProduct, 'id'>): Promise<void>
+	create(product: Optional<StoreProduct, 'id' | 'priceId'>): Promise<void>
+	checkout(products: Checkout[]): Promise<{
+		checkoutUrl: string
+	}>
 }

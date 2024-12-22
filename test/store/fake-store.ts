@@ -1,5 +1,5 @@
 import type { Optional } from '@/core/types/optional.ts'
-import type { StoreProduct, StoreProducts } from '@/domain/ecommerce/app/store/store.ts'
+import type { Checkout, StoreProduct, StoreProducts } from '@/domain/ecommerce/app/store/store.ts'
 import { randomUUID } from 'node:crypto'
 
 export class FakeStoreProduct implements StoreProducts {
@@ -14,6 +14,7 @@ export class FakeStoreProduct implements StoreProducts {
 		const products: StoreProduct[] = [
 			{
 				id: '1',
+				priceId: 'price_test_1',
 				name: 'product-1',
 				description: 'description-1',
 				imageUrl: '',
@@ -21,6 +22,7 @@ export class FakeStoreProduct implements StoreProducts {
 			},
 			{
 				id: '2',
+				priceId: 'price_test_2',
 				name: 'product-2',
 				description: 'description-2',
 				imageUrl: '',
@@ -31,12 +33,19 @@ export class FakeStoreProduct implements StoreProducts {
 		return products
 	}
 
-	async create(product: Optional<StoreProduct, 'id'>): Promise<void> {
+	async create(product: Optional<StoreProduct, 'id' | 'priceId'>): Promise<void> {
 		const productCreated = {
 			id: product.id ?? randomUUID(),
+			priceId: product.priceId ?? `price_test_${randomUUID()}`,
 			...product,
 		}
 
 		this.items.set(productCreated.id, productCreated)
+	}
+
+	async checkout(products: Checkout[]): Promise<{ checkoutUrl: string }> {
+		return {
+			checkoutUrl: 'fake-url',
+		}
 	}
 }
