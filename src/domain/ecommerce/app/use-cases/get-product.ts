@@ -1,7 +1,8 @@
-import { left, right, type Either } from '@/core/either.ts'
-import type { ProductsRepository } from '../repositories/products-repository.ts'
-import type { Product } from '../../enterprise/entities/product.ts'
-import { ResourceNotFoundError } from './errors/resource-not-found.ts'
+import { left, right, type Either } from '@/core/either'
+import { ProductsRepository } from '../repositories/products-repository'
+import type { Product } from '../../enterprise/entities/product'
+import { ResourceNotFoundError } from './errors/resource-not-found'
+import { Inject, Injectable } from '@nestjs/common'
 
 export interface GetProductUseCaseRequest {
 	id: string
@@ -14,8 +15,9 @@ type GetProductUseCaseResponse = Either<
 	}
 >
 
+@Injectable()
 export class GetProductUseCase {
-	constructor(private productsRepository: ProductsRepository) {}
+	constructor(@Inject(ProductsRepository) private productsRepository: ProductsRepository) {}
 
 	async execute({ id }: GetProductUseCaseRequest): Promise<GetProductUseCaseResponse> {
 		const product = await this.productsRepository.findById(id)

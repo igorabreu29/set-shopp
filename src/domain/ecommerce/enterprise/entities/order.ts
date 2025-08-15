@@ -1,6 +1,6 @@
-import { Entity } from '@/core/entities/entity.ts'
-import type { UniqueEntityId } from '@/core/entities/unique-entity-id.ts'
-import type { Optional } from '@/core/types/optional.ts'
+import { Entity } from '@/core/entities/entity'
+import type { UniqueEntityId } from '@/core/entities/unique-entity-id'
+import type { Optional } from '@/core/types/optional'
 
 export interface OrderProps {
 	customerId: UniqueEntityId

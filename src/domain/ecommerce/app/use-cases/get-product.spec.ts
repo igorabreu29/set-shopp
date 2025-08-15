@@ -1,8 +1,8 @@
-import { InMemoryProductsRepository } from 'test/repositories/in-memory-products-repository.ts'
+import { InMemoryProductsRepository } from 'test/repositories/in-memory-products-repository'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { makeProduct } from 'test/factories/make-product.ts'
-import { GetProductUseCase } from './get-product.ts'
-import { ResourceNotFoundError } from './errors/resource-not-found.ts'
+import { makeProduct } from 'test/factories/make-product'
+import { GetProductUseCase } from './get-product'
+import { ResourceNotFoundError } from './errors/resource-not-found'
 
 let productsRepository: InMemoryProductsRepository
 let sut: GetProductUseCase

@@ -1,6 +1,6 @@
-import { type Either, left, right } from '@/core/either.ts'
-import { ValueObject } from '@/core/entities/value-object.ts'
-import { InvalidEmailError } from '@/core/errors/domain/invalid-email-error.ts'
+import { type Either, left, right } from '@/core/either'
+import { ValueObject } from '@/core/entities/value-object'
+import { InvalidEmailError } from '@/core/errors/domain/invalid-email-error'
 
 interface EmailProps {
 	email: string

@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { type Either, left, right } from './either.ts'
+import { type Either, left, right } from './either'
 
 function doSomeThing(shouldSuccess: boolean): Either<string, number> {
 	if (shouldSuccess) {

@@ -1,5 +1,5 @@
-import { Entity } from '@/core/entities/entity.ts'
-import type { UniqueEntityId } from '@/core/entities/unique-entity-id.ts'
+import { Entity } from '@/core/entities/entity'
+import type { UniqueEntityId } from '@/core/entities/unique-entity-id'
 
 export interface OrderItemProps {
 	orderId: UniqueEntityId

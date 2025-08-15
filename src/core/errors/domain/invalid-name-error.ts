@@ -1,4 +1,4 @@
-import type { DomainError } from '../domain.ts'
+import type { DomainError } from '../domain'
 
 export class InvalidNameError extends Error implements DomainError {
 	constructor(message?: string) {

@@ -1,6 +1,6 @@
-import { type Either, left, right } from '@/core/either.ts'
-import { ValueObject } from '@/core/entities/value-object.ts'
-import { InvalidNameError } from '@/core/errors/domain/invalid-name-error.ts'
+import { type Either, left, right } from '@/core/either'
+import { ValueObject } from '@/core/entities/value-object'
+import { InvalidNameError } from '@/core/errors/domain/invalid-name-error'
 
 interface NameProps {
 	name: string

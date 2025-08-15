@@ -1,13 +1,13 @@
-import { Entity } from '@/core/entities/entity.ts'
-import type { UniqueEntityId } from '@/core/entities/unique-entity-id.ts'
-import type { Optional } from '@/core/types/optional.ts'
-import type { Email } from './value-objects/email.ts'
-import type { Name } from './value-objects/name.ts'
-import { right, type Either } from '@/core/either.ts'
-import type { InvalidNameError } from '@/core/errors/domain/invalid-name-error.ts'
-import type { InvalidEmailError } from '@/core/errors/domain/invalid-email-error.ts'
+import { Entity } from '@/core/entities/entity'
+import type { UniqueEntityId } from '@/core/entities/unique-entity-id'
+import type { Optional } from '@/core/types/optional'
+import type { Email } from './value-objects/email'
+import type { Name } from './value-objects/name'
+import { right, type Either } from '@/core/either'
+import type { InvalidNameError } from '@/core/errors/domain/invalid-name-error'
+import type { InvalidEmailError } from '@/core/errors/domain/invalid-email-error'
 
-interface CustomerProps {
+export interface CustomerProps {
 	name: Name
 	email: Email
 	customerUrl: string

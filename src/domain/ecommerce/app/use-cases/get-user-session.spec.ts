@@ -1,5 +1,5 @@
-import { FakeStoreProduct } from 'test/store/fake-store.ts'
-import { GetUserSessionUseCase } from './get-user-session.ts'
+import { FakeStoreProduct } from 'test/store/fake-store'
+import { GetUserSessionUseCase } from './get-user-session'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 let storeProduct: FakeStoreProduct

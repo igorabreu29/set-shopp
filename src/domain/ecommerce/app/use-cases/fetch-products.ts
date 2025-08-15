@@ -1,6 +1,7 @@
-import { right, type Either } from '@/core/either.ts'
-import type { ProductsRepository } from '../repositories/products-repository.ts'
+import { right, type Either } from '@/core/either'
+import { ProductsRepository } from '../repositories/products-repository.js'
 import type { Product } from '../../enterprise/entities/product.ts'
+import { Inject, Injectable } from '@nestjs/common'
 
 export interface FetchProductsUseCaseRequest {
 	page?: number
@@ -13,8 +14,9 @@ type FetchProductsUseCaseResponse = Either<
 	}
 >
 
+@Injectable()
 export class FetchProductsUseCase {
-	constructor(private productsRepository: ProductsRepository) {}
+	constructor(@Inject(ProductsRepository) private productsRepository: ProductsRepository) {}
 
 	async execute({ page }: FetchProductsUseCaseRequest): Promise<FetchProductsUseCaseResponse> {
 		const products = await this.productsRepository.findMany(page)

@@ -1,11 +1,11 @@
-import { InMemoryOrdersRepository } from 'test/repositories/in-memory-orders-repository.ts'
+import { InMemoryOrdersRepository } from 'test/repositories/in-memory-orders-repository'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { FakeStoreProduct } from 'test/store/fake-store.ts'
-import { InMemoryOrderItemsRepository } from 'test/repositories/in-memory-order-items-repository.ts'
-import { CheckoutOrderUseCase } from './checkout-order.ts'
-import { ResourceNotFoundError } from './errors/resource-not-found.ts'
-import { makeOrder } from 'test/factories/make-order.ts'
-import { makeOrderItem } from 'test/factories/make-order-item.ts'
+import { FakeStoreProduct } from 'test/store/fake-store'
+import { InMemoryOrderItemsRepository } from 'test/repositories/in-memory-order-items-repository'
+import { CheckoutOrderUseCase } from './checkout-order'
+import { ResourceNotFoundError } from './errors/resource-not-found'
+import { makeOrder } from 'test/factories/make-order'
+import { makeOrderItem } from 'test/factories/make-order-item'
 
 let ordersRepository: InMemoryOrdersRepository
 let orderItemsRepository: InMemoryOrderItemsRepository

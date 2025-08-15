@@ -27,6 +27,9 @@
       "style": {
         "noNamespace": "error",
         "useAsConstAssertion": "error"
+      },
+      "complexity": {
+        "noStaticOnlyClass": "off"
       }
     }
   },
@@ -36,6 +39,9 @@
       "trailingCommas": "es5",
       "quoteStyle": "single",
       "semicolons": "asNeeded"
+    },
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
     }
   },
   "json": {

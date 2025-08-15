@@ -1,4 +1,4 @@
-import { Name } from '@/domain/ecommerce/enterprise/entities/value-objects/name.ts'
+import { Name } from '@/domain/ecommerce/enterprise/entities/value-objects/name'
 import { faker } from '@faker-js/faker'
 
 export function makeName(name?: string) {

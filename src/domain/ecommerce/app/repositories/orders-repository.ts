@@ -1,8 +1,8 @@
-import type { Order } from '../../enterprise/entities/order.ts'
+import type { Order } from '../../enterprise/entities/order'
 
-export interface OrdersRepository {
-	findById(id: string): Promise<Order | null>
-	findByCustomerId(customerId: string): Promise<Order | null>
-	create(order: Order): Promise<Order>
-	save(order: Order): Promise<void>
+export abstract class OrdersRepository {
+	abstract findById(id: string): Promise<Order | null>
+	abstract findByCustomerId(customerId: string): Promise<Order | null>
+	abstract create(order: Order): Promise<Order>
+	abstract save(order: Order): Promise<void>
 }

@@ -1,8 +1,8 @@
-import { InMemoryProductsRepository } from 'test/repositories/in-memory-products-repository.ts'
+import { InMemoryProductsRepository } from 'test/repositories/in-memory-products-repository'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { makeProduct } from 'test/factories/make-product.ts'
-import { FetchProductsUseCase } from './fetch-products.ts'
-import { UniqueEntityId } from '@/core/entities/unique-entity-id.ts'
+import { makeProduct } from 'test/factories/make-product'
+import { FetchProductsUseCase } from './fetch-products'
+import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 
 let productsRepository: InMemoryProductsRepository
 let sut: FetchProductsUseCase

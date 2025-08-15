@@ -1,11 +1,11 @@
-import { InMemoryProductsRepository } from 'test/repositories/in-memory-products-repository.ts'
-import { FakeStoreProduct } from 'test/store/fake-store.ts'
-import { GetAndCreateProductUseCase } from './get-and-create-product.ts'
+import { InMemoryProductsRepository } from 'test/repositories/in-memory-products-repository'
+import { FakeStoreProduct } from 'test/store/fake-store'
+import { GetAndCreateProductUseCase } from './get-and-create-product'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { ResourceNotFoundError } from './errors/resource-not-found.ts'
-import { makeProduct } from 'test/factories/make-product.ts'
-import { makeName } from 'test/factories/make-name.ts'
-import { ResourceAlreadyExistError } from './errors/resource-already-exist.ts'
+import { ResourceNotFoundError } from './errors/resource-not-found'
+import { makeProduct } from 'test/factories/make-product'
+import { makeName } from 'test/factories/make-name'
+import { ResourceAlreadyExistError } from './errors/resource-already-exist'
 
 let storeProducts: FakeStoreProduct
 let productsRepository: InMemoryProductsRepository

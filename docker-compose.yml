@@ -1,0 +1,21 @@
+services:
+  postgres: 
+    container_name: shopping
+    image: bitnami/postgresql:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - 'db:/var/lib/postgresql/data'
+  
+  stripe: 
+    container_name: stripe-mock
+    image: stripe/stripe-mock:latest
+    ports:
+      - 12111:12111
+    
+volumes:
+  db:

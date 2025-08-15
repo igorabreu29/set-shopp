@@ -1,10 +1,10 @@
-import { right, type Either } from '@/core/either.ts'
-import { Entity } from '@/core/entities/entity.ts'
-import type { UniqueEntityId } from '@/core/entities/unique-entity-id.ts'
-import type { InvalidNameError } from '@/core/errors/domain/invalid-name-error.ts'
-import type { Name } from './value-objects/name.ts'
+import { right, type Either } from '@/core/either'
+import { Entity } from '@/core/entities/entity'
+import type { UniqueEntityId } from '@/core/entities/unique-entity-id'
+import type { InvalidNameError } from '@/core/errors/domain/invalid-name-error'
+import type { Name } from './value-objects/name'
 
-interface ProductProps {
+export interface ProductProps {
 	name: Name
 	description: string
 	price: number

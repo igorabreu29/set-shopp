@@ -1,7 +1,7 @@
-import { right, type Either } from '@/core/either.ts'
-import type { ProductsRepository } from '../repositories/products-repository.ts'
+import { right, type Either } from '@/core/either'
 import type { OrderItem } from '../../enterprise/entities/order-item.ts'
-import type { OrderItemsRepository } from '../repositories/order-items-repository.ts'
+import { OrderItemsRepository } from '../repositories/order-items-repository.js'
+import { Inject, Injectable } from '@nestjs/common'
 
 export interface FetchOrderItemsUseCaseRequest {
 	orderId: string
@@ -15,8 +15,9 @@ type FetchOrderItemsUseCaseResponse = Either<
 	}
 >
 
+@Injectable()
 export class FetchOrderItemsUseCase {
-	constructor(private orderItemsRepository: OrderItemsRepository) {}
+	constructor(@Inject(OrderItemsRepository) private orderItemsRepository: OrderItemsRepository) {}
 
 	async execute({
 		orderId,

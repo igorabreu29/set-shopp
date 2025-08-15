@@ -1,11 +1,11 @@
-import type { Product } from '../../enterprise/entities/product.ts'
+import type { Product } from '../../enterprise/entities/product'
 
-export interface ProductsRepository {
-	findById(id: string): Promise<Product | null>
-	findByName(name: string): Promise<Product | null>
-	findMany(page?: number): Promise<Product[]>
-	create(product: Product): Promise<void>
-	createMany(products: Product[]): Promise<void>
-	save(product: Product): Promise<void>
-	delete(product: Product): Promise<void>
+export abstract class ProductsRepository {
+	abstract findById(id: string): Promise<Product | null>
+	abstract findByName(name: string): Promise<Product | null>
+	abstract findMany(page?: number): Promise<Product[]>
+	abstract create(product: Product): Promise<void>
+	abstract createMany(products: Product[]): Promise<void>
+	abstract save(product: Product): Promise<void>
+	abstract delete(product: Product): Promise<void>
 }

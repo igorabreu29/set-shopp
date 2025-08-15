@@ -10,12 +10,12 @@ import { randomUUID } from 'node:crypto'
 export class FakeStoreProduct implements StoreProducts {
 	public items = new Map<string, StoreProduct>()
 
-	async getById(id: string): Promise<StoreProduct | null> {
+	async findById(id: string): Promise<StoreProduct | null> {
 		const product = this.items.get(id)
 		return product ?? null
 	}
 
-	async fetch(): Promise<StoreProduct[]> {
+	async findMany(): Promise<StoreProduct[]> {
 		const products: StoreProduct[] = [
 			{
 				id: '1',
@@ -77,6 +77,19 @@ export class FakeStoreProduct implements StoreProducts {
 		}
 
 		this.items.set(productCreated.id, productCreated)
+	}
+
+	async save(product: Optional<StoreProduct, 'priceId'>): Promise<void> {
+		const productUpdated = {
+			priceId: product.priceId ?? `price_test_${randomUUID()}`,
+			...product,
+		}
+
+		this.items.set(productUpdated.id, productUpdated)
+	}
+
+	async delete(id: string): Promise<void> {
+		this.items.delete(id)
 	}
 
 	async checkout(products: Checkout[]): Promise<{ checkoutUrl: string }> {

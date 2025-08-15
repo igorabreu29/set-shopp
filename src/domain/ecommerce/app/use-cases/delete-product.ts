@@ -1,19 +1,16 @@
-import { left, right, type Either } from '@/core/either.ts'
-import type { ProductsRepository } from '../repositories/products-repository.ts'
-import { ResourceAlreadyExistError } from './errors/resource-already-exist.ts'
-import { Product } from '../../enterprise/entities/product.ts'
-import { Name } from '../../enterprise/entities/value-objects/name.ts'
-import { InvalidNameError } from '@/core/errors/domain/invalid-name-error.ts'
-import { ResourceNotFoundError } from './errors/resource-not-found.ts'
+import { Inject } from '@nestjs/common'
+import { ProductsRepository } from '../repositories/products-repository'
+import { left, right, type Either } from '@/core/either'
+import { ResourceNotFoundError } from './errors/resource-not-found'
 
-export interface DeleteProductUseCaseRequest {
+interface DeleteProductUseCaseRequest {
 	id: string
 }
 
 type DeleteProductUseCaseResponse = Either<ResourceNotFoundError, null>
 
 export class DeleteProductUseCase {
-	constructor(private productsRepository: ProductsRepository) {}
+	constructor(@Inject(ProductsRepository) private productsRepository: ProductsRepository) {}
 
 	async execute({ id }: DeleteProductUseCaseRequest): Promise<DeleteProductUseCaseResponse> {
 		const product = await this.productsRepository.findById(id)

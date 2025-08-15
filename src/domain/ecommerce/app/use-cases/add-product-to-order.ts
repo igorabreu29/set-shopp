@@ -1,11 +1,12 @@
-import { UniqueEntityId } from '@/core/entities/unique-entity-id.ts'
-import { Order } from '../../enterprise/entities/order.ts'
-import type { OrderItemsRepository } from '../repositories/order-items-repository.ts'
-import type { OrdersRepository } from '../repositories/orders-repository.ts'
-import type { ProductsRepository } from '../repositories/products-repository.ts'
-import { ResourceNotFoundError } from './errors/resource-not-found.ts'
-import { left, right, type Either } from '@/core/either.ts'
-import { OrderItem } from '../../enterprise/entities/order-item.ts'
+import { UniqueEntityId } from '@/core/entities/unique-entity-id'
+import { Order } from '../../enterprise/entities/order'
+import { OrderItemsRepository } from '../repositories/order-items-repository'
+import { OrdersRepository } from '../repositories/orders-repository'
+import { ProductsRepository } from '../repositories/products-repository'
+import { ResourceNotFoundError } from './errors/resource-not-found'
+import { left, right, type Either } from '@/core/either'
+import { OrderItem } from '../../enterprise/entities/order-item'
+import { Inject, Injectable } from '@nestjs/common'
 
 interface AddProductToOrderUseCaseRequest {
 	customerId: string
@@ -14,10 +15,14 @@ interface AddProductToOrderUseCaseRequest {
 
 type AddProductToOrderUseCaseResponse = Either<ResourceNotFoundError, null>
 
+@Injectable()
 export class AddProductToOrderUseCase {
 	constructor(
+		@Inject(ProductsRepository)
 		private productsRepository: ProductsRepository,
+		@Inject(OrdersRepository)
 		private ordersRepository: OrdersRepository,
+		@Inject(OrderItemsRepository)
 		private orderItemsRepository: OrderItemsRepository
 	) {}
 
@@ -58,6 +63,7 @@ export class AddProductToOrderUseCase {
 			productId: product.id,
 			price: product.price,
 			quantity: 1,
+			priceId: product.priceId,
 		})
 
 		await this.orderItemsRepository.create(orderItem)

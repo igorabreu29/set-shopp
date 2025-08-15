@@ -1,6 +1,6 @@
-import { InvalidEmailError } from '@/core/errors/domain/invalid-email-error.ts'
+import { InvalidEmailError } from '@/core/errors/domain/invalid-email-error'
 import { expect, test } from 'vitest'
-import { Email } from './email.ts'
+import { Email } from './email'
 
 test('invalid format email', () => {
 	const result = Email.create('john@gmail')

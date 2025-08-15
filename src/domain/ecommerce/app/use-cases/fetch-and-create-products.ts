@@ -1,21 +1,25 @@
-import { left, right, type Either } from '@/core/either.ts'
-import type { ProductsRepository } from '../repositories/products-repository.ts'
-import type { StoreProducts } from '../store/store.ts'
-import { Product } from '../../enterprise/entities/product.ts'
-import { Name } from '../../enterprise/entities/value-objects/name.ts'
-import { InvalidNameError } from '@/core/errors/domain/invalid-name-error.ts'
-import { UniqueEntityId } from '@/core/entities/unique-entity-id.ts'
+import { left, right, type Either } from '@/core/either'
+import { ProductsRepository } from '../repositories/products-repository'
+import { StoreProducts } from '../store/store'
+import { Product } from '../../enterprise/entities/product'
+import { Name } from '../../enterprise/entities/value-objects/name'
+import { InvalidNameError } from '@/core/errors/domain/invalid-name-error'
+import { UniqueEntityId } from '@/core/entities/unique-entity-id'
+import { Inject, Injectable } from '@nestjs/common'
 
 type FetchAndCreateProductsUseCaseResponse = Either<InvalidNameError, null>
 
+@Injectable()
 export class FetchAndCreateProductsUseCase {
 	constructor(
+		@Inject(ProductsRepository)
 		private productsRepository: ProductsRepository,
+		@Inject(StoreProducts)
 		private storeProducts: StoreProducts
 	) {}
 
 	async execute(): Promise<FetchAndCreateProductsUseCaseResponse> {
-		const productsToAdd = await this.storeProducts.fetch()
+		const productsToAdd = await this.storeProducts.findMany()
 
 		const productsOrError = productsToAdd.map(item => {
 			const nameOrError = Name.create(item.name)

@@ -1,13 +1,13 @@
-import { InMemoryOrderItemsRepository } from 'test/repositories/in-memory-order-items-repository.ts'
-import { InMemoryOrdersRepository } from 'test/repositories/in-memory-orders-repository.ts'
-import { InMemoryProductsRepository } from 'test/repositories/in-memory-products-repository.ts'
-import { AddProductToOrderUseCase } from './add-product-to-order.ts'
+import { InMemoryOrderItemsRepository } from 'test/repositories/in-memory-order-items-repository'
+import { InMemoryOrdersRepository } from 'test/repositories/in-memory-orders-repository'
+import { InMemoryProductsRepository } from 'test/repositories/in-memory-products-repository'
+import { AddProductToOrderUseCase } from './add-product-to-order'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { ResourceNotFoundError } from './errors/resource-not-found.ts'
-import { makeProduct } from 'test/factories/make-product.ts'
-import { makeOrder } from 'test/factories/make-order.ts'
-import { makeOrderItem } from 'test/factories/make-order-item.ts'
-import { UniqueEntityId } from '@/core/entities/unique-entity-id.ts'
+import { ResourceNotFoundError } from './errors/resource-not-found'
+import { makeProduct } from 'test/factories/make-product'
+import { makeOrder } from 'test/factories/make-order'
+import { makeOrderItem } from 'test/factories/make-order-item'
+import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 
 let productsRepository: InMemoryProductsRepository
 let ordersRepository: InMemoryOrdersRepository

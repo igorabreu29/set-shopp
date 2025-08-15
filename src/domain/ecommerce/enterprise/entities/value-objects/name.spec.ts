@@ -1,7 +1,7 @@
-import { InvalidNameError } from '@/core/errors/domain/invalid-name-error.ts'
+import { InvalidNameError } from '@/core/errors/domain/invalid-name-error'
 import { faker } from '@faker-js/faker'
 import { expect, test } from 'vitest'
-import { Name } from './name.ts'
+import { Name } from './name'
 
 test('empty name', () => {
 	const name = Name.create('')
